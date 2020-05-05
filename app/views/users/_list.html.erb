@@ -1,0 +1,41 @@
+<div class="container">
+ <div class="row">
+
+	<div class="col-xs-3">
+		<h2>User info</h2>
+		<%= attachment_image_tag user, :profile_image, size:"100x100", format:"jpeg",
+			fallback:"no_image.jpg" %>
+		<table class="table">
+			<tr>
+				<td>name</td>
+				<td> <%= user.name %> </td>
+			</tr>
+			<tr>
+				<td>introduction</td>
+				<td> <%= user.introduction %> </td>
+			</tr>
+		</table>
+		<%= link_to "編集", edit_user_path(user) %>
+	</div>
+
+	<div class="col-xs-9">
+		<h2> <%= title %> </h2>
+		<table class="table">
+			<tr>
+				<td>image</td>
+				<td>name</td>
+				<td></td>
+			</tr>
+			<% users.each do |user| %>
+			<tr>
+				<td> <%= attachment_image_tag user, :profile_image, size:"50x50",
+					format:"jpeg", fallback:"no_image.jpg" %> </td>
+				<td> <%= user.name %> </td>
+				<td> <%= link_to "show", user_path(user) %> </td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+
+ </div>
+</div>
