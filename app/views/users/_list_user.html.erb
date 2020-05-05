@@ -15,11 +15,26 @@
 				<td> <%= user.introduction %> </td>
 			</tr>
 		</table>
-		<%= link_to "編集", edit_user_path(user) %>
+		<%= link_to "編集", edit_user_path(current_user) %>
+
+		<h2>New Book</h2>
+		<%= form_for(book) do |f| %>
+		 <div class="field">
+		  <%= f.label :title %> <br>
+		  <%= f.text_field :title, autofocus: true %>
+		 </div>
+		 <div class="field">
+		 	<%= f.label :opinion %> <br>
+		 	<%= f.text_area :opinion, autofocus: true %>
+		 </div>
+		 <div class="field">
+  		  <%= f.submit "Create Book" %>
+  		 </div>
+		<% end %>
 	</div>
 
 	<div class="col-xs-9">
-		<h2> <%= title %> </h2>
+		<h2>Users</h2>
 		<table class="table">
 			<tr>
 				<td>image</td>

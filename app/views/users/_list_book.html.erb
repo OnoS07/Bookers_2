@@ -1,0 +1,57 @@
+<div class="container">
+ <div class="row">
+
+	<div class="col-xs-3">
+		<h2>User info</h2>
+		<%= attachment_image_tag user, :profile_image, size:"100x100", format:"jpeg",
+			fallback:"no_image.jpg" %>
+		<table class="table">
+			<tr>
+				<td>name</td>
+				<td> <%= user.name %> </td>
+			</tr>
+			<tr>
+				<td>introduction</td>
+				<td> <%= user.introduction %> </td>
+			</tr>
+		</table>
+		<%= link_to "編集", edit_user_path(current_user) %>
+
+		<h2>New Book</h2>
+		<%= form_for(book) do |f| %>
+		 <div class="field">
+		  <%= f.label :title %> <br>
+		  <%= f.text_field :title, autofocus: true %>
+		 </div>
+		 <div class="field">
+		 	<%= f.label :opinion %> <br>
+		 	<%= f.text_area :opinion, autofocus: true %>
+		 </div>
+		 <div class="field">
+  		  <%= f.submit "Create Book" %>
+  		 </div>
+		<% end %>
+	</div>
+
+	<div class="col-xs-9">
+		<h2>Books</h2>
+		<table class="table">
+			<tr>
+				<td>image</td>
+				<td>Title</td>
+				<td>Opinion</td>
+				<td></td>
+			</tr>
+			<% books.each do |book| %>
+			<tr>
+				<td> <%= attachment_image_tag book.user, :profile_image, size:"50x50",
+					format:"jpeg", fallback:"no_image.jpg" %> </td>
+				<td> <%= book.title %> </td>
+				<td> <%= book.opinion %> </td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+
+ </div>
+</div>

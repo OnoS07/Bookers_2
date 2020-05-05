@@ -9,4 +9,14 @@ class ApplicationController < ActionController::Base
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys:[:email])
 	end
+
+  protected
+  def user_params
+    params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  protected
+  def book_params
+    params.require(:book).permit(:title, :opinion)
+  end
 end
