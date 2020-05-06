@@ -15,7 +15,9 @@
 				<td> <%= @user.introduction %> </td>
 			</tr>
 		</table>
-		<%= link_to "編集", edit_user_path(@user) %>
+		<%= link_to edit_user_path(current_user) do %>
+			<span class="glyphicon glyphicon-wrench btn btn-default block-btn" 			aria-hidden="true"></span>
+		<% end %>
 
 		<h2>New Book</h2>
 		<%= form_for(@book_new) do |f| %>
@@ -28,13 +30,13 @@
 		 	<%= f.text_area :opinion, autofocus: true %>
 		 </div>
 		 <div class="field">
-  		  <%= f.submit "Create Book" %>
+  		  <%= f.submit "Create Book" ,class:"btn btn-default" %>
   		 </div>
 		<% end %>
 	</div>
 
 	<div class="col-xs-9">
-		<h2>Book details</h2>
+		<h2>Book detail</h2>
 		<table class="table">
 			<tr>
 				<td>
@@ -47,8 +49,10 @@
 					<%= @book.title %> </td>
 					<% end %>
 				<td> <%= @book.opinion %> </td>
-				<td> <%= link_to "Edit", edit_book_path(@book) %> </td>
-				<td> <%= link_to "Destoroy", book_path(@book), method: :delete %> </td>
+				<td> <%= link_to "Edit", edit_book_path(@book) ,
+					class:"btn btn-default btn-sm" %> </td>
+				<td> <%= link_to "Destoroy", book_path(@book), method: :delete ,
+					class:"btn btn-default btn-sm" %> </td>
 			</tr>
 		</table>
 	</div>

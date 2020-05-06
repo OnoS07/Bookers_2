@@ -10,10 +10,10 @@ class UsersController < ApplicationController
 
 
 	def authenticate
-		redirect_to top_url unless user_signed_in?
+		redirect_to home_url unless user_signed_in?
 	end
 
-  def top
+  def home
   end
 
   def about
@@ -40,8 +40,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+       flash[:notice] = "You have updated user successfully."
+       redirect_to user_path(@user)
+    else
+       render ("users/edit")
+    end
   end
 
 

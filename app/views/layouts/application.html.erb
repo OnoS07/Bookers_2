@@ -29,20 +29,28 @@
         <%= link_to 'Books', "/books" %>
       </li>
       <li class="">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
       <li class="">
-        <%= link_to "Home", "/top" %>
+        <%= link_to "/home" do %>
+        <span class="glyphicon glyphicon-home" aria-hidden="true">  Home</span>
+        <% end %>
       </li>
       <li class="">
-        <%= link_to "About", "/home/about" %>
+        <%= link_to "/home/about" do %>
+         <span class="glyphicon glyphicon-link" aria-hidden="true">  About</span>
+        <% end %>
       </li>
       <li class="">
-        <%= link_to "sign up", new_user_registration_path %>
+        <%= link_to new_user_registration_path do %>
+         <span class="glyphicon glyphicon-edit" aria-hidden="true">  sign up</span>
+        <% end %>
       </li>
       <li class="">
-        <%= link_to "login", new_user_session_path %>
+        <%= link_to new_user_session_path do %>
+         <span class="glyphicon glyphicon-log-in" aria-hidden="true">  login</span>
+         <% end %>
       </li>
     <% end %>
   </ul>

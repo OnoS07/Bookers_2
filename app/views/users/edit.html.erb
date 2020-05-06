@@ -1,5 +1,13 @@
 <div class="container">
 <h2>User info</h2>
+      <% if @user.errors.any? %>
+             <h2> <%= @user.errors.count %>error prohibited this obj from being saved</h2>
+             <ul>
+              <% @user.errors.full_messages.each do |message| %>
+               <li> <%= message %> </li>
+               <% end %>
+              </ul>
+            <% end %>
 
 <%= form_for (@user) do |f| %>
 
@@ -11,7 +19,6 @@
   <div class="field">
   <%= f.label :image %>
   <%= f.attachment_field :profile_image, placeholder: "プロフィール画面" %>
-  <%= attachment_image_tag @user,:profile_image, size:"100x100" , fallback:"no_image.jpg" %>
   </div>
 
   <div class="field">
