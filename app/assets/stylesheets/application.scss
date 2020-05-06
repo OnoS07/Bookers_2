@@ -16,3 +16,18 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.notice {
+  background-color: white;
+  color: green;
+  text-align: left;
+  padding-left: 8%;
+}
+
+.alert {
+  background-color: white;
+  color: red;
+  text-align: left;
+  padding-left: 8%;
+}
+
