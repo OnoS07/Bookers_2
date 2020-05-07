@@ -1,39 +1,7 @@
 <div class="container">
  <div class="row">
 
-	<div class="col-xs-3">
-		<h2>User info</h2>
-		<%= attachment_image_tag @user, :profile_image, size:"100x100", format:"jpeg",
-			fallback:"no_image.jpg" %>
-		<table class="table">
-			<tr>
-				<td>name</td>
-				<td> <%= @user.name %> </td>
-			</tr>
-			<tr>
-				<td>introduction</td>
-				<td> <%= @user.introduction %> </td>
-			</tr>
-		</table>
-		<%= link_to edit_user_path(current_user) do %>
-			<span class="glyphicon glyphicon-wrench btn btn-default block-btn" 			aria-hidden="true"></span>
-		<% end %>
-
-		<h2>New Book</h2>
-		<%= form_for(@book_new) do |f| %>
-		 <div class="field">
-		  <%= f.label :title %> <br>
-		  <%= f.text_field :title, autofocus: true %>
-		 </div>
-		 <div class="field">
-		 	<%= f.label :opinion %> <br>
-		 	<%= f.text_area :body, autofocus: true %>
-		 </div>
-		 <div class="field">
-  		  <%= f.submit "Create Book" ,class:"btn btn-default" %>
-  		 </div>
-		<% end %>
-	</div>
+ <%= render 'users/list_user', { user: @user, book_new: @book_new } %>
 
 	<div class="col-xs-9">
 		<h2>Book detail</h2>
@@ -43,6 +11,7 @@
 					<%= link_to user_path(@user) do %>
 					<%= attachment_image_tag @user, :profile_image, size:"50x50",
 					format:"jpeg", fallback:"no_image.jpg" %>
+					<br> <%= @user.name %>
 				    <% end %></td>
 				<td>
 					<%= link_to book_path(@book) do %>
