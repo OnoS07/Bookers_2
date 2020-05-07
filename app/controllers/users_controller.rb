@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
-	before_action :authenticate, :except=>[:top, :about]
+	before_action :authenticate_user!, only: [:index, :show, :edit]
+  def authenticate
+    redirect_to home_url unless user_signed_in?
+  end
+
   before_action :ensure_correct_user, {only:[:edit, :update]}
   def ensure_correct_user
-    if @current_user.id != params[:id].to_i
+    if current_user.id != params[:id].to_i
        redirect_to user_path(current_user)
     end
   end
 
-
-
-	def authenticate
-		redirect_to home_url unless user_signed_in?
-	end
 
   def home
   end

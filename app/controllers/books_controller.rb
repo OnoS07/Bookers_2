@@ -1,17 +1,16 @@
 class BooksController < ApplicationController
-	before_action :authenticate_user
-	def authenticate_user
-		if current_user == nil
-			redirect_to "/top"
-		end
+	before_action :authenticate_user!
+	def authenticate
+		redirect_to home_url unless user_signed_in?
 	end
 
-	before_action :ensure_correct_book, {only:[:edit, :update]}
-    def ensure_correct_book
-    	if @current_user.id != params[:user_id]
-    		redirect_to books_path
+	before_action :ensure_correct_user, {only:[:edit, :update]}
+    def ensure_correct_user
+    	@book = Book.find(params[:id])
+    	if current_user.id != @book.user_id
+       		redirect_to books_path
     	end
-  	end
+  end
 
 	def index
 		@user = User.find(current_user.id)
@@ -28,15 +27,15 @@ class BooksController < ApplicationController
 	end
 
 	def new
-		@book = Book.new
+		@book_new = Book.new
 	end
 
 	def create
-		@book = Book.new(book_params)
-		@book.user_id = current_user.id
-		if @book.save
+		@book_new = Book.new(book_params)
+		@book_new.user_id = current_user.id
+		if @book_new.save
 			flash[:notice] = "You have creatad book successfully."
-			redirect_to book_path(@book)
+			redirect_to book_path(@book_new)
 		else
 			@user = User.find(current_user.id)
 			@books = Book.all
