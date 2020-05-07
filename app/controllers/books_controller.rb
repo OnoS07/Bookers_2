@@ -6,6 +6,13 @@ class BooksController < ApplicationController
 		end
 	end
 
+	before_action :ensure_correct_book, {only:[:edit, :update]}
+    def ensure_correct_book
+    	if @current_user.id != params[:user_id]
+    		redirect_to books_path
+    	end
+  	end
+
 	def index
 		@user = User.find(current_user.id)
 

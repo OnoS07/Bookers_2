@@ -34,7 +34,7 @@
 		 </div>
 		 <div class="field">
 		 	<%= f.label :opinion %> <br>
-		 	<%= f.text_area :opinion, autofocus: true %>
+		 	<%= f.text_area :body, autofocus: true %>
 		 </div>
 		 <div class="field">
   		  <%= f.submit "Create Book" ,class:"btn btn-default" %>
@@ -62,7 +62,7 @@
 					<%= link_to book_path(book) do %>
 					<%= book.title %> </td>
 					<% end %>
-				<td> <%= book.opinion %> </td>
+				<td> <%= book.body %> </td>
 			</tr>
 			<% end %>
 		</table>
